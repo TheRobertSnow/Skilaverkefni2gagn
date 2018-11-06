@@ -1,0 +1,26 @@
+//Basic Queries:
+//1.
+select ProductName, QuantityPerUnit from products;
+//2.
+select ProductID, ProductName from products
+where Discontinued = 0;
+//3.
+select ProductID, ProductName from products
+where Discontinued = 1;
+//4.
+select ProductName, max(UnitPrice) as max_price from products;
+select ProductName, min(UnitPrice) as min_price from products;
+//5.
+select ProductID, ProductName, UnitPrice from products
+where UnitPrice <= 20;
+//6.
+select ProductID, ProductName, UnitPrice from products
+where UnitPrice < 25 and UnitPrice > 15;
+//7.
+select ProductName, UnitPrice from products
+where UnitPrice > (select avg(UnitPrice) as avg_price from products);
+//8.
+ select distinct ProductName, UnitPrice from products as a
+ where 10 >= (select count(distinct UnitPrice) from products as b where b.UnitPrice >= a.UnitPrice)
+ order by UnitPrice desc;
+//9.
