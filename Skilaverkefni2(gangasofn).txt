@@ -31,3 +31,23 @@ select ProductName, UnitsInStock, UnitsOnOrder from products
 where UnitsInStock < UnitsOnOrder;
 
 //Sub-Queries:
+//1.
+select FIRST_NAME, LAST_NAME, SALARY from employees
+
+where SALARY > (select SALARY from employees where LAST_NAME = 'Bull');
+//2.
+select FIRST_NAME, LAST_NAME from employees
+
+where JOB_ID like 'IT%';
+//3.
+select FIRST_NAME, LAST_NAME from employees
+
+where MANAGER_ID > 0 and DEPARTMENT_ID in (select DEPARTMENT_ID from departments where LOCATION_ID in (select LOCATION_ID from locations where COUNTRY_ID = 'us'));
+//4.
+select FIRST_NAME, LAST_NAME from employees
+
+where JOB_ID like '%MAN' or JOB_ID like '%MGR';
+//5.
+select FIRST_NAME, LAST_NAME, SALARY from employees
+
+where SALARY > (select avg(SALARY) from employees);
