@@ -51,3 +51,26 @@ where JOB_ID like '%MAN' or JOB_ID like '%MGR';
 select FIRST_NAME, LAST_NAME, SALARY from employees
 
 where SALARY > (select avg(SALARY) from employees);
+
+//Join
+//1.
+select D.DEPARTMENT_NAME, D.LOCATION_ID, L.STREET_ADDRESS, L.CITY, L.STATE_PROVINCE from locations as L
+
+inner join departments as D
+
+on L.LOCATION_ID = D.LOCATION_ID;
+//2.
+select E.FIRST_NAME, E.LAST_NAME, E.DEPARTMENT_ID, D.DEPARTMENT_NAME from employees as E
+inner join departments as D
+
+on E.DEPARTMENT_ID = D.DEPARTMENT_ID;
+//3.
+select E.FIRST_NAME, E.LAST_NAME, D.DEPARTMENT_ID from employees as E
+
+inner join departments as D
+
+on E.DEPARTMENT_ID = D.DEPARTMENT_ID
+where D.LOCATION_ID in (select LOCATION_ID from locations where CITY like 'London');
+//4.
+
+
